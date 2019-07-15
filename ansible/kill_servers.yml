@@ -1,0 +1,7 @@
+---
+- hosts: all
+  tasks:
+  # Change ece428 to whatever the executable name is, specified in the Makefile
+  - name: Kill servers
+    command: killall -9 ece428
+    ignore_errors: yes

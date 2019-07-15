@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+  - name: Clone MP2 git repo
+    git: repo=https://gitlab+deploy-token-10:AhpCxx3qM59Jku8TQrK7@gitlab.engr.illinois.edu/cguldne2/ece428-mp2.git
+      dest=~/mp2
+      update=yes
+      force=yes
+      
+  - name: Get packages needed for execution
+    command: go get github.com/fatih/color

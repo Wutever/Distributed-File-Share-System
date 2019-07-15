@@ -1,0 +1,24 @@
+---
+- hosts: all
+  tasks:
+   - name: Check if server is already running
+     wait_for:
+       port: 1234
+       timeout: 3
+       msg: "Server already running"
+     register: port_check
+     ignore_errors: yes
+      
+   - name: Build server
+     command: make -C ~/mp2/src
+     environment:
+       GOPATH: /home/cguldne2/mp2/
+     when: port_check.failed == true
+
+   - name: Run server
+     command: ./ece428
+     args:
+       chdir: ~/mp2/src
+     async: 300 
+     poll: 0
+     when: port_check.failed == true

@@ -1,0 +1,5 @@
+---
+- hosts: all
+  tasks:
+  - name: Remove logs
+    shell: rm -rf ~/*.log ~/mp2/src/*.log
